@@ -1,0 +1,18 @@
+#!/bin/bash
+
+propietario=`test -O $1 && echo true || echo false`
+lectura=`test -r $1 && echo true || echo false`
+
+if [ $propietario ]
+then 
+	echo "Somos propietarios del archivo"
+else
+	echo "No somos propietarios del archivo"
+fi
+
+if [ $lectura ] 
+then
+	echo "Tenemos permiso de lectura sobre él"
+else
+	echo "No tenemos permiso de lectura sobre él"
+fi

@@ -1,0 +1,35 @@
+#!/bin/bash
+
+if [ "$#" -lt "2" ] || [ "$#" -gt "3" ];
+then
+	echo "Número de parámetros incorrecto."
+	exit 1
+fi
+
+if ! [ -f $1 ];
+then
+	echo El $1 no existe
+	exit 1
+
+elif [ "$#" -eq "2" ];
+then
+	if  [ $2 == "list" ];
+	then
+		sort -k 1.8,1.48 $1
+	fi
+
+elif [ "$#" -eq "3" ];
+then
+	if  [ $2 == "stock" ] && [ $3 -gt 0 ] && [ $3 -lt 11 ];
+	then
+		cat $1 | while read linea
+		do
+			valor=`echo "$linea" | cut -c 5-7`
+			if [ $valor -le $3 ];
+			then
+				echo $linea
+			fi
+		done
+	fi
+fi
+

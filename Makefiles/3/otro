@@ -1,0 +1,17 @@
+all: pr.o complex.o vector.o geom.o
+	g++ pr.o complex.o vector.o geom.o -o bin/programa
+
+pr.o: pr.cpp complex.h geom.h vector.h
+	g++ -c pr.cpp -o pr.o -I -Wall -g
+
+complex.o: complex.cpp complex.h
+	g++ -c complex.cpp -o complex.o -I -Wall -g
+
+vector.o: vector.cpp vector.h
+	g++ -c vector.cpp -o vector.o -I -Wall -g
+
+geom.o: geom.cpp geom.h
+	g++ -c geom.cpp -o geom.o -I -Wall -g
+
+clean:
+	rm *.o

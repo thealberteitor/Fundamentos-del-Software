@@ -1,0 +1,20 @@
+all: pr.o lib/libfunciones.a
+	g++  pr.o -L lib -lfunciones -o bin/programa
+
+complex.o: complex.cpp complex.h
+	g++ -c complex.cpp -o complex.o -I. -Wall -g
+
+geom.o: geom.cpp geom.h
+	g++ -c geom.cpp -o geom.o -I. -Wall -g
+
+vector.o: vector.cpp vector.h
+	g++ -c vector.cpp -o vector.o -I. -Wall -g
+
+pr.o: pr.cpp geom.h complex.h vector.h
+	g++ -c pr.cpp -o pr.o -I. -Wall -g
+
+lib/libfunciones.a: complex.o geom.o vector.o
+	ar -rvs lib/libfunciones.a complex.o geom.o vector.o
+
+clean:
+	rm -f *.o lib/*.a

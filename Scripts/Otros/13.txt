@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [[ $1 == "-h" ]]
+then
+	echo "Este es el manual...etc"
+else
+	anio=365
+	dia=`date +%j`
+	restantes=`expr $anio - $dia`
+	
+	echo "Faltan $restantes dias hasta el fin de año"
+	if [ `expr $restantes % 5` == 0 ]
+	then
+		echo "Ademas, ese numero es multiplo de 5"
+	else
+		echo "Pero ese numero no es multiplo de 5"
+	fi
+fi
